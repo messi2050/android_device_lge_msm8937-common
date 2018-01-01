@@ -27,7 +27,7 @@
 
 # TODO: This MUST be blocked not use in LGE device configuration.
 import init.target.rc
-import init.lge.usb.rc
+import init.qcom.usb.rc
 import init.ph2n_core.rc
 import init.qcom.power.rc
 import init.lge.fm.rc
