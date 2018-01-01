@@ -139,6 +139,7 @@ PRODUCT_PACKAGES += \
     init.qcom.wifi.sh \
     init.qcom.bt.sh \
     init.target.rc \
+    init.baseband.sh \
     ueventd.qcom.rc
 
 # IPA Manager

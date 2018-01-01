@@ -396,6 +396,11 @@ on post-fs-data
    write /sys/devices/virtual/lg_rgb_led/use_patterns/setting 1
 
 
+service baseband-sh /system/bin/sh /init.baseband.sh
+    class late_start
+    user root
+    oneshot
+
 service perfd /system/vendor/bin/perfd
    class main
    user root
