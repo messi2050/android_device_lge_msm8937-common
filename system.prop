@@ -123,8 +123,10 @@ persist.data.iwlan.enable=true
 persist.dbg.wfc_avail_ovr=1
 
 # volte
+persist.dbg.ims_volte_enable=1
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
+persist.radio.videopause.mode=1
 persist.radio.calls.on.ims=0
 persist.radio.jbims=0
 persist.radio.sw_mbn_update=0
