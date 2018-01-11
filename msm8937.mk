@@ -111,7 +111,11 @@ PRODUCT_PACKAGES += \
 
 # Gps
 PRODUCT_PACKAGES += \
-    gps.msm8937
+    gps.msm8937 \
+    libgps.utils \
+    libloc_core \
+    libloc_eng \
+    libgnsspps 
 
 # IMS
 PRODUCT_PACKAGES += \

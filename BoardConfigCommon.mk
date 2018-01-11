@@ -18,7 +18,7 @@ LOCAL_PATH := device/lge/msm8937-common
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-#FORCE_64_BIT := true
+FORCE_64_BIT := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8937
