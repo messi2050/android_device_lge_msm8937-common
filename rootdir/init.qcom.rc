@@ -29,7 +29,6 @@
 import init.target.rc
 import init.qcom.usb.rc
 import init.ph2n_core.rc
-import init.qcom.power.rc
 import init.lge.fm.rc
 import init.lge.bt.rc
 
