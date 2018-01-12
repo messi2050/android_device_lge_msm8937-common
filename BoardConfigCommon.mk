@@ -215,6 +215,9 @@ TARGET_RIL_VARIANT := caf
 # Sensors
 USE_SENSOR_MULTI_HAL := true
 
+# System prop
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
