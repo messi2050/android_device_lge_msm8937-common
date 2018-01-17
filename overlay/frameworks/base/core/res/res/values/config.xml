@@ -201,6 +201,10 @@
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveBatteryLed">true</bool> 
 
+    <!-- True if the device supports at least one form of multi-window.
+         E.g. freeform, split-screen, picture-in-picture. -->
+    <bool name="config_supportsMultiWindow">true</bool>
+
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">680</integer>
 

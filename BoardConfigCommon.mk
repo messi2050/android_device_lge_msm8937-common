@@ -54,9 +54,6 @@ endif
 TARGET_BOOTLOADER_BOARD_NAME := msm8937
 TARGET_NO_BOOTLOADER := true
 
-# Cpusets
-ENABLE_CPUSETS := true
-
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 androidboot.hardware=qcom
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
@@ -76,7 +73,6 @@ KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-ea
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 endif
 TARGET_KERNEL_APPEND_DTB := true
-TARGET_KERNEL_CONFIG := lineage_ph2n_mini_defconfig
 TARGET_KERNEL_SOURCE := kernel/lge/msm8937
 
 # Audio
