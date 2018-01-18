@@ -42,7 +42,7 @@ service reader_mode /system/bin/sh /init.lge.display.reader_mode.sh
 	oneshot
 
 on early-fs
-    ffu_update
+    chmod 666 /dev/goodix_fp
 
 on boot
 
