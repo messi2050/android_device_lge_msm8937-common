@@ -133,3 +133,7 @@ persist.radio.sw_mbn_update=0
 persist.radio.hw_mbn_update=0
 persist.radio.calls.on.ims=true
 service.qti.ims.enabled=1
+
+# swap & zram
+ro.config.zram=true
+ro.config.swap=true
