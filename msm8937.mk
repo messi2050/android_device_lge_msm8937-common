@@ -139,6 +139,10 @@ PRODUCT_PACKAGES += \
     init.baseband.sh \
     ueventd.qcom.rc
 
+# HWADDRS
+PRODUCT_PACKAGES += \
+    hwaddrs
+
 # IPA Manager
 PRODUCT_PACKAGES += \
     ipacm \

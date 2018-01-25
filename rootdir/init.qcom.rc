@@ -395,7 +395,6 @@ on post-fs-data
    chmod 0644 /sys/devices/virtual/lg_rgb_led/use_patterns/setting
    write /sys/devices/virtual/lg_rgb_led/use_patterns/setting 1
 
-
 service baseband-sh /system/bin/sh /init.baseband.sh
     class late_start
     user root
@@ -613,7 +612,6 @@ service config_bt_addr /system/bin/btnvtool -O
     group bluetooth radio
     oneshot
 
-# TODO: This MUST be added in LGE platform(It's for Qualcomm solution).
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
@@ -1272,3 +1270,16 @@ on property:ro.logdumpd.enabled=1
 
 on property:vold.decrypt=trigger_restart_min_framework
     start time_daemon
+
+service hwaddrs /system/bin/hwaddrs
+    class core
+    user root
+    group bluetooth wifi
+    oneshot
+
+# Running hwaddrs under init is enforcing 0600, we need more
+    on property:init.svc.hwaddrs=stopped
+    chmod 644 /data/misc/wifi/config
+    chown system wifi /data/misc/wifi/config
+    chmod 644 /data/misc/bluetooth/bdaddr
+    chown bluetooth bluetooth /data/misc/bluetooth/bdaddr
