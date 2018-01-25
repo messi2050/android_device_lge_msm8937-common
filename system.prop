@@ -60,7 +60,7 @@ debug.qualcomm.sns.libsensor1=e
 persist.sensors.mag_filter_size=8
 
 # bluetooth
-#ro.bt.bdaddr_path=/data/misc/bdaddr
+ro.bt.bdaddr_path="/data/misc/bluetooth/bdaddr"
 qcom.bluetooth.soc=smd
 ro.qualcomm.bt.hci_transport=smd
 
