@@ -211,7 +211,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libshim_camera
+    libshim_camera \
+    Snap
 
 # Sensors
 PRODUCT_PACKAGES += \
