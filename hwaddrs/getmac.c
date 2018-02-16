@@ -47,6 +47,17 @@ int main() {
         }
 
         write(fd2, "\n", 1);
+        close(fd2);
+
+        /* seems like driver is actually using WCNSS_qcom_wlan_nv.bin, seems like we can leave WCNSS_qcom_wlan_nv_boot.bin alone */
+        fd2 = open("/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin", O_WRONLY, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+        for(i = 0; i < 6; i++) {
+            lseek(fd1, 0x3000 + i, SEEK_SET);
+            lseek(fd2, 0x0a + i, SEEK_SET);
+            read(fd1, &macbyte, 1);
+            write(fd2, &macbyte, 1);
+        }
+
     }
 
     close(fd2);
