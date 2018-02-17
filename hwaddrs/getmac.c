@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+#include <errno.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/mount.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -49,6 +52,23 @@ int main() {
         write(fd2, "\n", 1);
         close(fd2);
 
+
+        const char* src  = "/dev/block/bootdevice/by-name/system";
+        const char* trgt = "/system";
+        const char* type = "tmpfs";
+        unsigned long mntflags = MS_REMOUNT;
+        const char* opts = "";
+
+        int result = 0;
+        result = mount(src, trgt, type, mntflags, opts);
+        if (result == 0) {
+            printf("mount rw created at %s...\n", trgt);
+        } else {
+            printf("Error : Failed to remount rw %s\n"
+              "Reason: %s [%d]\n",
+             src, strerror(errno), errno);
+        }
+
         /* seems like driver is actually using WCNSS_qcom_wlan_nv.bin, seems like we can leave WCNSS_qcom_wlan_nv_boot.bin alone */
         fd2 = open("/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin", O_WRONLY, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
         for(i = 0; i < 6; i++) {
@@ -58,9 +78,22 @@ int main() {
             write(fd2, &macbyte, 1);
         }
 
-    }
+        /* need to close so we can remount /system */
+        close(fd2);
 
-    close(fd2);
+        /* put /system back as read only */
+        mntflags = MS_RDONLY | MS_REMOUNT | MS_RELATIME;
+        opts = "data=ordered";
+        result = mount(src, trgt, type, mntflags, opts);
+        if (result == 0) {
+            printf("mount ro created at %s...\n", trgt);
+        } else {
+            printf("Error : Failed to remount ro %s\n"
+              "Reason: %s [%d]\n",
+             src, strerror(errno), errno);
+        }
+
+    }
 
     if (!blank(fd1, 0x4000))
     {
