@@ -158,7 +158,7 @@
          This flag controls whether the {@link Display#FLAG_SUPPORTS_PROTECTED_BUFFERS}
          flag is set for wifi displays.
     -->
-    <bool name="config_wifiDisplaySupportsProtectedBuffers">false</bool>
+    <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">false</bool>
@@ -198,12 +198,8 @@
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
 
-    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool> 
-
-    <!-- True if the device supports at least one form of multi-window.
-         E.g. freeform, split-screen, picture-in-picture. -->
-    <bool name="config_supportsMultiWindow">true</bool>
+    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option 
+    <bool name="config_intrusiveBatteryLed">true</bool> -->
 
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">680</integer>
@@ -283,16 +279,16 @@
      <integer name="config_deviceHardwareWakeKeys">64</integer> -->
 
     <!-- Wifi driver supports batched scan -->
-    <bool translatable="false" name="config_wifi_batched_scan_supported">false</bool>
+    <bool translatable="false" name="config_wifi_batched_scan_supported">true</bool>
 
     <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
          This mechanism allows the host to remain in suspend state and the dongle to actively
          scan and wake the host when a configured SSID is detected by the dongle. This chipset
          capability can provide power savings when wifi needs to be always kept on. -->
-    <bool translatable="false" name="config_wifi_background_scan_support">false</bool>
+    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
-    <!-- Boolean indicating whether Hotspot 2.0/Passpoint and ANQP queries is enabled -->
-    <bool translatable="false" name="config_wifi_hotspot2_enabled">true</bool> 
+    <!-- Boolean indicating whether Hotspot 2.0/Passpoint and ANQP queries is enabled 
+    <bool translatable="false" name="config_wifi_hotspot2_enabled">true</bool> -->
 
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool> 
@@ -305,8 +301,8 @@
          provisioning, availability etc -->
     <bool name="config_carrier_volte_available">true</bool> 
 
-    <!-- Flag specifying whether VoLTE availability is based on provisioning -->
-    <bool name="config_carrier_volte_provisioned">false</bool>
+    <!-- Flag specifying whether VoLTE availability is based on provisioning 
+    <bool name="config_carrier_volte_provisioned">false</bool> -->
 
     <!-- Flag specifying whether VoLTE TTY is supported -->
     <bool name="config_carrier_volte_tty_supported">false</bool> 
@@ -319,8 +315,8 @@
          provisioning, availability etc -->
     <bool name="config_carrier_vt_available">true</bool>
 
-    <!-- Disable buttons backlight configurations -->
-    <integer name="config_buttonBrightnessSettingDefault">0</integer>
+    <!-- Disable buttons backlight configurations 
+    <integer name="config_buttonBrightnessSettingDefault">0</integer> -->
 
     <!-- If the DUN connection for this CDMA device supports more than just DUN -->
     <!-- traffic you should list them here. -->
@@ -375,7 +371,7 @@
     <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
     <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
 
-    <!-- Component name of the combo network location provider. -->
-    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
+    <!-- Component name of the combo network location provider. 
+    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string> -->
 
 </resources>
