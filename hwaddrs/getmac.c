@@ -16,6 +16,7 @@
 
 #include <errno.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/mount.h>
@@ -24,29 +25,73 @@
 #include <fcntl.h>
 
 int blank(int fd, int offset);
+int read_mode();
+int write_mode();
 
 /* Read plain address from misc partiton and set the Wifi and BT mac addresses accordingly */
 
-int main() {
+#define READ_MODE 0 /* read from misc partition and write to /system */
+#define WRITE_MODE 1 /* read from WCNSS_qcom_wlan_nv and write into misc partition */
+#define SET_MODE 2 /* set a specific mac address */
+
+int main(int argc, char **argv) {
+    char *mac_address = NULL;
+
+    int mode = READ_MODE;
+    int c;
+    while ((c = getopt(argc, argv, "rws:")) != -1)
+    switch (c) {
+      case 'r':
+        mode = READ_MODE;
+        break;
+      case 'w':
+        mode = WRITE_MODE;
+        break;
+      case 's':
+        mode = SET_MODE;
+        mac_address = optarg;
+        break;
+      case '?':
+        if (optopt == 's')
+          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        return 1;
+    }
+
+    if (mode == READ_MODE) {
+        return read_mode();
+    } else if (mode == WRITE_MODE) {
+        return write_mode();
+    }
+}
+  
+int read_mode() {
     int fd1, fd2;
-    char macbyte;
-    char macbuf[3];
     int i;
 
     fd1 = open("/dev/block/bootdevice/by-name/misc", O_RDONLY);
     fd2 = open("/data/misc/wifi/config", O_WRONLY|O_CREAT|O_TRUNC, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
 
-    if (!blank(fd1, 0x3000))
-    {
-        write(fd2, "cur_etheraddr=", 14);
+    char macbyte;
+    char macbuf[3];
+    if (!blank(fd1, 0x3000)) {
 
-        for(i = 0; i < 6; i++) {
+        write(fd2, "cur_etheraddr=", 14);
+        printf("getmac: found mac in misc partition\n"); 
+
+        for (i = 0; i < 6; i++) {
             lseek(fd1, 0x3000 + i, SEEK_SET);
             lseek(fd2, 0, SEEK_END);
             read(fd1, &macbyte, 1);
             sprintf(macbuf, "%02x", macbyte);
             write(fd2, &macbuf, 2);
             if(i != 5) write(fd2, ":", 1);
+            printf("got octet %02x\n", macbyte);
         }
 
         write(fd2, "\n", 1);
@@ -92,11 +137,11 @@ int main() {
               "Reason: %s [%d]\n",
              src, strerror(errno), errno);
         }
-
+    } else {
+        printf("getmac: unfortunately misc partition is blank\n"); 
     }
 
-    if (!blank(fd1, 0x4000))
-    {
+    if (!blank(fd1, 0x4000)) {
         fd2 = open("/data/misc/bluetooth/bdaddr", O_WRONLY|O_CREAT|O_TRUNC, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
         for(i = 0; i < 6; i++) {
             lseek(fd1, 0x4000 + i, SEEK_SET);
@@ -114,12 +159,43 @@ int main() {
     return 0;
 }
 
+int write_mode() {
+    int fd1, fd2;
+    char macbyte;
+    int i;
+
+    fd1 = open("/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin", S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+    fd2 = open("/dev/block/bootdevice/by-name/misc", O_WRONLY);
+
+    if (!blank(fd1, 0x0a)) {
+        for (i = 0; i < 6; i++) {
+            lseek(fd1, 0x0a + i, SEEK_SET);
+            lseek(fd2, 0x3000 + i, SEEK_SET);
+            read(fd1, &macbyte, 1);
+            write(fd2, &macbyte, 1);
+            printf("got octet %02x\n", macbyte);
+        }
+
+        close(fd2);
+        close(fd1);
+    } else {
+        printf("getmac: unfortunately you are not on stock\n");
+        return 1;
+    }
+
+/*
+    close(fd2);
+    close(fd1);
+*/
+    return 0;
+}
+
 int blank(int fd, int offset)
 {
     char macbyte;
     int i, count = 0;
 
-    for(i = 0; i < 6; i++) {
+    for (i = 0; i < 6; i++) {
         lseek(fd, offset + i, SEEK_SET);
         read(fd, &macbyte, 1);
 
