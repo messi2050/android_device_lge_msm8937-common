@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
         break;
       case 'h':
         printf("-b reads from misc partition and writes to /system\n");
-        printf("-c reads from /system partition files to show current address without writing to misc partition\n");
+        printf("-c reads from /system files to show current address without writing to misc partition\n");
         printf("-r reads from misc partition without writing to to /system\n");
         printf("-w reads from /system files and writes to misc partition (should run on stock rom only)\n");
         printf("-s <mac address in aa:bb:cc:dd:ee form> sets wifi mac address\n");
