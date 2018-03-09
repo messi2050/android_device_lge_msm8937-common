@@ -18,22 +18,62 @@ LOCAL_PATH := $(call my-dir)
 # Camera
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
-    lg_camera_misc.c 
-
+    lg_camera_misc.c
 LOCAL_SHARED_LIBRARIES := libutils libgui liblog libbinder
 LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
-LOCAL_32_BIT_ONLY := true
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := DisplayEventReceiver.c
+LOCAL_MODULE := libshim_camera_hal
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 # ims
 include $(CLEAR_VARS)
-
 LOCAL_SRC_FILES := MediaBuffer.c
-
 LOCAL_SHARED_LIBRARIES := libstagefright_foundation
-
 LOCAL_MODULE := libshims_ims
 LOCAL_MODULE_TAGS := optional
+include $(BUILD_SHARED_LIBRARY)
+
+# test
+# libcamera_shim
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := camera_shim.cpp
+
+LOCAL_SHARED_LIBRARIES := \
+    liblog \
+    libutils \
+    libgui \
+    libui
+
+LOCAL_C_INCLUDES := \
+    frameworks/native/include
+
+LOCAL_MODULE := libshims_camera
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+
+LOCAL_MULTILIB := 32
+
+include $(BUILD_SHARED_LIBRARY)
+
+
+# qcamera-daemon_shim
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := \
+    bionic/bionic_time_conversions.cpp \
+    bionic/pthread_cond.cpp
+
+LOCAL_SHARED_LIBRARIES := libc
+
+LOCAL_MODULE := libshims_qcamera-daemon
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_MULTILIB := 32
 
 include $(BUILD_SHARED_LIBRARY)

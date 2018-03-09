@@ -30,11 +30,11 @@ service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
     group system input
-    writepid /dev/cpuset/system-background/tasks
+    disabled
 
 #fidod
 service fidod /system/bin/fidod
     class late_start
     user system
     group system
-    writepid /dev/cpuset/system-background/tasks
+    disabled

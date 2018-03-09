@@ -72,7 +72,6 @@ BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 endif
-TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_SOURCE := kernel/lge/msm8937
 
 # Audio
@@ -109,7 +108,7 @@ AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_SOURCE_TRACKING := true
 AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := true
-AUDIO_FEATURE_ENABLED_SSR := true
+#AUDIO_FEATURE_ENABLED_SSR := true
 AUDIO_FEATURE_ENABLED_VBAT_MONITOR := true
 #AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
 AUDIO_FEATURE_ENABLED_VORBIS_OFFLOAD := false
@@ -139,9 +138,10 @@ QCOM_BT_USE_SMD_TTY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Offline Charging
-WITH_CM_CHARGER := true
+#WITH_LINEAGE_CHARGER := true
+BOARD_NO_CHARGER_LED := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_ENABLE_SUSPEND := false
+BOARD_CHARGER_ENABLE_SUSPEND := true
 BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
 BOARD_CHARGING_CMDLINE_VALUE := "chargerlogo"
@@ -164,32 +164,38 @@ endif
 WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
 
 # Display
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+BOARD_USES_ADRENO := false
+TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
-
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+#MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 VSYNC_EVENT_PHASE_OFFSET_NS := 1000000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 1000000
+TARGET_USES_HWC2 := true
+TARGET_USES_GRALLOC1 := true
+#TARGET_USES_QCOM_DISPLAY_BSP := true
 
-# Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
-# Increase the size if shaders of size greater than 12KB are used.
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
+# Filesystem
+TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
 
-# Maximum GLES shader cache size for each app to store the compiled shader
-# binaries. Decrease the size if RAM or Flash Storage size is a limitation
-# of the device.
-MAX_EGL_CACHE_SIZE := 2048*1024
-
-HAVE_ADRENO_SOURCE := false
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+# HIDL
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(LOCAL_PATH)/compatibility_matrix.xml
 
 # GPS
-USE_DEVICE_SPECIFIC_GPS := true
-USE_DEVICE_SPECIFIC_LOC_API := true
+#USE_DEVICE_SPECIFIC_GPS := true
+#USE_DEVICE_SPECIFIC_LOC_API := true
 TARGET_NO_RPC := true
+
+# land gps
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+USE_DEVICE_SPECIFIC_GPS := true
 
 # Lights
 BOARD_LIGHTS_VARIANT := aw2013
@@ -202,7 +208,8 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_PER_MGR_ENABLED := true
 
 # Power
-TARGET_POWERHAL_VARIANT := qcom
+#TARGET_POWERHAL_VARIANT := qcom
+#TARGET_HAS_NO_WIFI_STATS := true
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
@@ -211,25 +218,28 @@ BOARD_USES_QC_TIME_SERVICES := true
 # RIL
 TARGET_RIL_VARIANT := caf
 
-# Sensors
-USE_SENSOR_MULTI_HAL := true
-
 # System prop
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
+#TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+#include device/qcom/sepolicy/sepolicy.mk
+#BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Tap to wake
 #TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/lpwg_notify"
 
-# NFC
-BOARD_NFC_CHIPSET := pn548
-BOARD_NFC_DEVICE := "/dev/pn547"
+# Shim
+TARGET_LD_SHIM_LIBS := \
+	/system/lib/libfilm_emulation.so|libshim_camera.so \
+	/system/lib/hw/camera.msm8937.so|libshim_camera_hal.so \
+	/system/vendor/lib/libmmcamera_ppeiscore.so|libshims_camera.so
+
+# Encryption
+#TARGET_HW_DISK_ENCRYPTION := true
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
