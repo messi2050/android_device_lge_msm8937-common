@@ -71,8 +71,8 @@ int main(int argc, char **argv) {
         printf("-c reads from /system files to show current address without writing to misc partition\n");
         printf("-r reads from misc partition without writing to to /system\n");
         printf("-w reads from /system files and writes to misc partition (should run on stock rom only)\n");
-        printf("-s <mac address in aa:bb:cc:dd:ee form> sets wifi mac address\n");
-        printf("-t <mac address in aa:bb:cc:dd:ee form> sets bluetooth mac address\n");
+        printf("-s <mac address in aa:bb:cc:dd:ee form> sets wifi mac address to both misc parition and system file\n");
+        printf("-t <mac address in aa:bb:cc:dd:ee form> sets bluetooth mac address to misc partition\n");
         exit(0);
       case '?':
         if (optopt == 's')
@@ -95,9 +95,13 @@ int main(int argc, char **argv) {
     } else if (mode == READ_SYSTEM_MODE) {
         return write_to_misc_partition(1);
     } else if (mode == SET_WIFI_MODE) {
-        return write_mac_address_to_misc_partition(1, mac_address);
+        write_mac_address_to_misc_partition(1, mac_address);
+        /* also write to system file */
+        return read_from_misc_partition(0);
     } else if (mode == SET_BT_MODE) {
-        return write_mac_address_to_misc_partition(0, mac_address);
+        write_mac_address_to_misc_partition(0, mac_address);
+        /* also write to system file */
+        return read_from_misc_partition(0);
     }
 }
   
