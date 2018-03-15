@@ -26,15 +26,14 @@ on boot
 
 
 #fingerprintd
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group system input
-    disabled
+#service fingerprintd /system/bin/fingerprintd
+#    class late_start
+#    user system
+#    group system input
+#    disabled
 
 #fidod
-service fidod /system/bin/fidod
-    class late_start
-    user system
-    group system
-    disabled
+#service fidod /system/bin/fidod
+#    class late_start
+#    user system
+#    group system

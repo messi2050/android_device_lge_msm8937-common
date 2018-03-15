@@ -43,8 +43,9 @@ persist.dpm.feature=0
 # cne
 persist.cne.feature=1
 
-#system props for time-services
+# time-services
 persist.timed.enable=true
+persist.delta_time.enable=true
 
 # Wi-Fi
 wifi.interface=wlan0
@@ -65,21 +66,21 @@ ro.qualcomm.bt.hci_transport=smd
 
 # Audio
 af.fast_track_multiplier=1
-audio_hal.period_size=192
-audio.deep_buffer.media=true
-audio.dolby.ds2.enabled=true
+vendor.audio_hal.period_size=192
+vendor.audio.deep_buffer.media=true
+vendor.audio.dolby.ds2.enabled=true
 #QC property used when calculating client heap size in audio flinger
-#audio.heap.size.multiplier=7
-audio.dolby.ds2.hardbypass=true
-audio.parser.ip.buffer.size=262144
-audio.playback.mch.downsample=true
-audio.pp.asphere.enabled=false
-audio.safx.pbe.enabled=true
+#vendor.audio.heap.size.multiplier=7
+vendor.audio.dolby.ds2.hardbypass=true
+vendor.audio.parser.ip.buffer.size=262144
+vendor.audio.playback.mch.downsample=true
+vendor.audio.pp.asphere.enabled=false
+vendor.audio.safx.pbe.enabled=true
 flac.sw.decoder.24bit.support=true
-persist.speaker.prot.enable=false
-persist.audio.fluence.speaker=true
-persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=false
+persist.vendor.speaker.prot.enable=false
+persist.vendor.audio.fluence.speaker=true
+persist.vendor.audio.fluence.voicecall=true
+persist.vendor.audio.fluence.voicerec=false
 ro.qc.sdk.audio.fluencetype=fluence
 ro.qc.sdk.audio.ssr=false
 tunnel.audio.encode=false
@@ -94,16 +95,18 @@ ro.config.vc_call_vol_steps=7
 ro.config.vc_call_vol_default=7
 
 # Audio offload
+audio.offload.pcm.enable=true
+audio.offload.video=false
+audio.offload.multiple.enabled=true
+audio.offload.disable=0
 audio.offload.buffer.size.kb=64
-audio.offload.gapless.enabled=true
 audio.offload.min.duration.secs=30
-audio.offload.multiple.enabled=false
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
+audio.offload.track.enable=true
 audio.offload.multiaac.enable=true
 audio.offload.passthrough=false
-audio.offload.track.enable=true
-audio.offload.video=true
+audio.offload.gapless.enabled=false
 
 # Media
 media.msm8956hw=0
@@ -159,3 +162,11 @@ ro.sys.sdcardfs=false
 
 # Factory Reset Protection (FRP)
 ro.frp.pst=/dev/block/bootdevice/by-name/persistent
+
+# GPS
+persist.gps.qc_nlp_in_use=1
+#persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+
+# Default OMX service to non-Treble
+persist.media.treble_omx=false

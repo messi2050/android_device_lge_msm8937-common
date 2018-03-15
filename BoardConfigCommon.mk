@@ -139,12 +139,12 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Offline Charging
 #WITH_LINEAGE_CHARGER := true
-BOARD_NO_CHARGER_LED := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
-BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
-BOARD_CHARGING_CMDLINE_VALUE := "chargerlogo"
+#BOARD_NO_CHARGER_LED := true
+#BOARD_CHARGER_DISABLE_INIT_BLANK := true
+#BOARD_CHARGER_ENABLE_SUSPEND := true
+#BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+#BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
+#BOARD_CHARGING_CMDLINE_VALUE := "chargerlogo"
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
@@ -194,7 +194,7 @@ DEVICE_MATRIX_FILE := $(LOCAL_PATH)/compatibility_matrix.xml
 TARGET_NO_RPC := true
 
 # land gps
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8937
 USE_DEVICE_SPECIFIC_GPS := true
 
 # Lights
@@ -226,7 +226,7 @@ TARGET_PROVIDES_KEYMASTER := true
 #TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # SELinux
-#include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Tap to wake
