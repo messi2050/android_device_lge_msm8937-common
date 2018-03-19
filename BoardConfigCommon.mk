@@ -209,7 +209,9 @@ TARGET_PER_MGR_ENABLED := true
 
 # Power
 #TARGET_POWERHAL_VARIANT := qcom
-#TARGET_HAS_NO_WIFI_STATS := true
+#TARGET_HAS_LEGACY_POWER_STATS := true
+TARGET_HAS_NO_WIFI_STATS := true
+#TARGET_USES_INTERACTION_BOOST := true
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
@@ -227,7 +229,7 @@ TARGET_PROVIDES_KEYMASTER := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Tap to wake
 #TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/lpwg_notify"
