@@ -315,9 +315,6 @@
          provisioning, availability etc 
     <bool name="config_carrier_vt_available">true</bool> -->
 
-    <!-- Disable buttons backlight configurations 
-    <integer name="config_buttonBrightnessSettingDefault">0</integer> -->
-
     <!-- If the DUN connection for this CDMA device supports more than just DUN -->
     <!-- traffic you should list them here. -->
     <!-- If this device is not CDMA this is ignored.  If this list is empty on -->
