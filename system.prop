@@ -32,7 +32,7 @@ ro.vendor.extension_library=libqti-perfd-client.so
 ro.am.reschedule_service=true
 ro.sys.fw.dex2oat_thread_count=4
 ro.config.swap=true
-ro.config.zram=false
+ro.config.zram=true
 ro.core_ctl_max_cpu=4
 ro.core_ctl_min_cpu=2
 
