@@ -60,9 +60,9 @@ debug.qualcomm.sns.libsensor1=e
 persist.sensors.mag_filter_size=8
 
 # bluetooth
-#ro.bt.bdaddr_path=/data/misc/bdaddr
-qcom.bluetooth.soc=smd
-ro.qualcomm.bt.hci_transport=smd
+ro.bt.bdaddr_path=/data/misc/bluetooth/bdaddr
+bluetooth.hfp.client=1
+persist.bt.enableAptXHD=true
 
 # Audio
 af.fast_track_multiplier=1

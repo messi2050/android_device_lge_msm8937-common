@@ -459,11 +459,6 @@ on post-fs-data
     #Create FTM_AP dir for factory test
     mkdir /data/FTM_AP 0775 system system
 
-#service baseband-sh /vendor/bin/init.baseband.sh
-#    class late_start
-#    user root
-#    oneshot
-
 service iop /system/bin/iop
     class main
     user root
@@ -622,12 +617,12 @@ service config_bt_addr /system/bin/btnvtool -O
     oneshot
 
 # TODO: This MUST be added in LGE platform(It's for Qualcomm solution).
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+service config_bluetooth /system/bin/sh /vendor/bin/init.qcom.bt.sh "onboot"
     class core
     user root
     oneshot
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+service hciattach /system/bin/sh /vendor/bin/init.qcom.bt.sh
     class late_start
     user bluetooth
     group bluetooth net_bt_admin
@@ -1184,6 +1179,7 @@ service time_daemon /system/vendor/bin/time_daemon
     class main
     user root
     group root
+    disabled
 
 service qdmastatsd /system/vendor/bin/qdmastatsd
     class late_start

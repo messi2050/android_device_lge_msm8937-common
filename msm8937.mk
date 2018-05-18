@@ -173,8 +173,8 @@ PRODUCT_PACKAGES += \
     android.hardware.health@1.0-service
 
 # Doze mode
-PRODUCT_PACKAGES += \
-    LGDoze
+#PRODUCT_PACKAGES += \
+#    LGDoze
 
 # Qualcomm
 PRODUCT_COPY_FILES += \
@@ -241,8 +241,12 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service
 
 # LiveDisplay native
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-qdcm
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.livedisplay@1.0-service-sdm \
+#    vendor.lineage.livedisplay-V1.0-java
+
+#PRODUCT_BOOT_JARS += \
+#    vendor.lineage.livedisplay-V1.0-java
 
 # Treble
 PRODUCT_PACKAGES += \
