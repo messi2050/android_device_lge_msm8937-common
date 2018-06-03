@@ -124,21 +124,6 @@ vendor.vidc.enc.disable.pq=true
 persist.data.iwlan.enable=true
 persist.dbg.wfc_avail_ovr=1
 
-# volte
-#persist.dbg.ims_volte_enable=1
-#persist.dbg.volte_avail_ovr=1
-#persist.dbg.vt_avail_ovr=1
-#persist.radio.videopause.mode=1
-#persist.radio.jbims=0
-#persist.radio.sw_mbn_update=0
-#persist.radio.hw_mbn_update=0
-#persist.radio.sw_mbn_openmkt=1
-#persist.radio.sw_mbn_volte=1
-#persist.radio.start_ota_daemon=1
-#persist.volte_enabled_by_hw=1
-#persist.radio.calls.on.ims=0
-#service.qti.ims.enabled=1
-
 # Display
 persist.debug.wfd.enable=1
 persist.hwc.enable_vds=1
