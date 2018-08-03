@@ -207,8 +207,8 @@ BOARD_USES_QC_TIME_SERVICES := true
 # RIL
 TARGET_RIL_VARIANT := caf
 
-# vendor prop
-TARGET_VENDOR_PROP := $(LOCAL_PATH)/vendor.prop
+# System Prop
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
