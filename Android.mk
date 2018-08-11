@@ -49,7 +49,7 @@ CMN_IMAGES := \
     cmnlib64.b00 cmnlib64.b01 cmnlib64.b02 cmnlib64.b03 cmnlib64.b04 cmnlib64.b05 cmnlib64.mdt \
     cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.b04 cmnlib.b05 cmnlib.mdt
 
-CMN_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CMN_IMAGES)))
+CMN_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(CMN_IMAGES)))
 $(CMN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "CMN firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -62,7 +62,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(CMN_SYMLINKS)
 CPPF_IMAGES := \
     cppf.b00 cppf.b01 cppf.b02 cppf.b03 cppf.b04 cppf.b05 cppf.b06 cppf.mdt
 
-CPPF_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CPPF_IMAGES)))
+CPPF_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(CPPF_IMAGES)))
 $(CPPF_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "CPPF firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -75,7 +75,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(CPPF_SYMLINKS)
 CSFIDO_IMAGES := \
     csfido.b00 csfido.b01 csfido.b02 csfido.b03 csfido.b04 csfido.b05 csfido.b06 csfido.mdt
 
-CSFIDO_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CSFIDO_IMAGES)))
+CSFIDO_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(CSFIDO_IMAGES)))
 $(CSFIDO_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "CSFIDO firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -88,7 +88,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(CSFIDO_SYMLINKS)
 DHSECAPP_IMAGES := \
     dhsecapp.b00 dhsecapp.b01 dhsecapp.b02 dhsecapp.b03 dhsecapp.b04 dhsecapp.b05 dhsecapp.b06 dhsecapp.mdt
 
-DHSECAPP_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(DHSECAPP_IMAGES)))
+DHSECAPP_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(DHSECAPP_IMAGES)))
 $(DHSECAPP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "DHSECAPP firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -101,7 +101,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(DHSECAPP_SYMLINKS)
 GPTEST_IMAGES := \
     gptest.b00 gptest.b01 gptest.b02 gptest.b03 gptest.b04 gptest.b05 gptest.b06 gptest.mdt
 
-GPTEST_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(GPTEST_IMAGES)))
+GPTEST_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(GPTEST_IMAGES)))
 $(GPTEST_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "GPTEST firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -115,7 +115,7 @@ ISDB_IMAGES := \
     isdbtmm.b00 isdbtmm.b01 isdbtmm.b02 isdbtmm.b03 isdbtmm.b04 isdbtmm.b05 \
     isdbtmm.b06 isdbtmm.mdt
 
-ISDB_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(ISDB_IMAGES)))
+ISDB_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(ISDB_IMAGES)))
 $(ISDB_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "ISDB firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -127,7 +127,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(ISDB_SYMLINKS)
 # MBA
 MBA_IMAGES := mba.mbn
 
-MBA_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MBA_IMAGES)))
+MBA_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(MBA_IMAGES)))
 $(MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "MBA firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -140,7 +140,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(MBA_SYMLINKS)
 QMPSECAP_IMAGES := \
     qmpsecap.b00 qmpsecap.b01 qmpsecap.b02 qmpsecap.b03 qmpsecap.b04 qmpsecap.b05 qmpsecap.b06 qmpsecap.mdt
 
-QMPSECAP_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(QMPSECAP_IMAGES)))
+QMPSECAP_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(QMPSECAP_IMAGES)))
 $(QMPSECAP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "QMPSECAP firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -153,7 +153,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(QMPSECAP_SYMLINKS)
 SECUREMM_IMAGES := \
     securemm.b00 securemm.b01 securemm.b02 securemm.b03 securemm.b04 securemm.b05 securemm.b06 securemm.mdt
 
-SECUREMM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(SECUREMM_IMAGES)))
+SECUREMM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(SECUREMM_IMAGES)))
 $(SECUREMM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "SECUREMM firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -166,7 +166,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(SECUREMM_SYMLINKS)
 STOOL_IMAGES := \
     stool.b00 stool.b01 stool.b02 stool.b03 stool.b04 stool.b05 stool.b06 stool.mdt
 
-STOOL_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(STOOL_IMAGES)))
+STOOL_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(STOOL_IMAGES)))
 $(STOOL_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "STOOL firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -179,7 +179,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(STOOL_SYMLINKS)
 TBASE_IMAGES := \
     tbase.b00 tbase.b01 tbase.b02 tbase.b03 tbase.b04 tbase.b05 tbase.b06 tbase.mdt
 
-TBASE_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(TBASE_IMAGES)))
+TBASE_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(TBASE_IMAGES)))
 $(TBASE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "TBASE firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -192,7 +192,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(TBASE_SYMLINKS)
 VENUS_IMAGES := \
     venus.b00 venus.b01 venus.b02 venus.b03 venus.b04 venus.mdt
 
-VENUS_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(VENUS_IMAGES)))
+VENUS_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(VENUS_IMAGES)))
 $(VENUS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Venus firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -206,7 +206,7 @@ WCNSS_IMAGES := \
     wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 wcnss.b06 \
     wcnss.b09 wcnss.b10 wcnss.b11 wcnss.b12 wcnss.mdt
 
-WCNSS_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(WCNSS_IMAGES)))
+WCNSS_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(WCNSS_IMAGES)))
 $(WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "WCNSS firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -220,7 +220,7 @@ WV_IMAGES := \
     widevine.b00 widevine.b01 widevine.b02 widevine.b03 widevine.b04 widevine.b05 \
     widevine.b06 widevine.mdt
 
-WV_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(WV_IMAGES)))
+WV_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(WV_IMAGES)))
 $(WV_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Widevine firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -240,7 +240,7 @@ $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
 
-RFS_MSM_ADSP_SYMLINKS := $(TARGET_OUT)/rfs/msm/adsp/
+RFS_MSM_ADSP_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/msm/adsp/
 $(RFS_MSM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating RFS MSM ADSP folder structure: $@"
 	@rm -rf $@/*
@@ -251,7 +251,7 @@ $(RFS_MSM_ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /persist/hlos_rfs/shared $@/hlos
 	$(hide) ln -sf /firmware $@/readonly/firmware
 
-RFS_MSM_MPSS_SYMLINKS := $(TARGET_OUT)/rfs/msm/mpss/
+RFS_MSM_MPSS_SYMLINKS := $(TARGET_OUT_VENDOR)/rfs/msm/mpss/
 $(RFS_MSM_MPSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating RFS MSM MPSS folder structure: $@"
 	@rm -rf $@/*
