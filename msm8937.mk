@@ -54,24 +54,25 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
     audio.a2dp.default \
     audio.primary.msm8937 \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
-    libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libvolumelistener \
+    libqcompostprocbundle \
     tinymix
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
+    android.hardware.audio@2.0-service \
     android.hardware.audio.effect@2.0-impl \
-    android.hardware.broadcastradio@1.0-impl \
-    android.hardware.soundtrigger@2.0-impl
+    android.hardware.audio.effect@2.0-service \
+    android.hardware.soundtrigger@2.0-impl \
+    android.hardware.soundtrigger@2.0-service
 
+# Audio configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
@@ -80,7 +81,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml
 
-#XML Audio configuration files
+# XML Audio configuration files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:/$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
@@ -91,9 +92,9 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service \
-    android.hardware.bluetooth@1.0-impl
+    libbt-vendor
 
 # Display
 PRODUCT_PACKAGES += \
@@ -101,16 +102,20 @@ PRODUCT_PACKAGES += \
     gralloc.msm8937 \
     hwcomposer.msm8937 \
     memtrack.msm8937 \
-    libdisplayconfig \
-    liboverlay
+    liboverlay \
+    libgenlock \
+    libtinyxml \
+    libdisplayconfig
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
     android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service
+    android.hardware.memtrack@1.0-service \
+    android.hardware.configstore@1.0-service
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
@@ -129,15 +134,18 @@ PRODUCT_PACKAGES += \
 
 # Keymaster HAL
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -245,11 +253,7 @@ PRODUCT_PACKAGES += \
 
 # LiveDisplay native
 #PRODUCT_PACKAGES += \
-#    vendor.lineage.livedisplay@1.0-service-sdm \
-#    vendor.lineage.livedisplay-V1.0-java
-
-#PRODUCT_BOOT_JARS += \
-#    vendor.lineage.livedisplay-V1.0-java
+#    vendor.lineage.livedisplay@1.0-service-sdm
 
 # Treble
 PRODUCT_PACKAGES += \
@@ -261,13 +265,11 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.0-service.widevine
 
-# Configstore
+# Ebtables
 PRODUCT_PACKAGES += \
-    android.hardware.configstore@1.0-service
-
-# Misc
-PRODUCT_PACKAGES += \
-    libcurl
+    ebtables \
+    ethertypes \
+    libebtc
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -285,8 +287,8 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libmm-omxcore \
     libc2dcolorconvert \
+    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -294,15 +296,15 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw
+    libstagefrighthw  \
+    libstagefright_soft_flacdec
+
+PRODUCT_PACKAGES += \
+    android.hardware.media.omx@1.0-impl
 
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service-qti \
-
-# Qualcomm dependencies
-PRODUCT_PACKAGES += \
-    libtinyxml
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -334,7 +336,8 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0 \
     android.system.net.netd@1.0 \
-    libandroid_net
+    libandroid_net \
+    libandroid_net_32
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
