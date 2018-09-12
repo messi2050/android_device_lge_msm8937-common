@@ -140,3 +140,6 @@ service.qti.ims.enabled=1
 # swap & zram
 ro.config.zram=true
 ro.config.swap=true
+
+# Factory Reset Protection (FRP)
+ro.frp.pst=/dev/block/bootdevice/by-name/persistent
